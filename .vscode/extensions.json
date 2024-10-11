@@ -1,0 +1,10 @@
+{
+	"recommendations": [
+		"Vue.volar",
+		"voorjaar.windicss-intellisense",
+		"EditorConfig.EditorConfig",
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint",
+		"stylelint.vscode-stylelint"
+	]
+}
