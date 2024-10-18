@@ -43,8 +43,8 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import hjhPassword from "@hjh/password"";
-import "@hjh/password/dist/style.css";
+import hjhPassword from "hjh-password"";
+import "hjh-password/dist/style.css";
 import {isEnableTwoFactorAuth,verifyCaptchaCode，modifyPassword} from '../src/api/index';
 
 const hjhPassword=ref()

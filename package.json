@@ -1,5 +1,5 @@
 {
-  "name": "@hjh/password",
+  "name": "hjh-password",
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
@@ -85,6 +85,6 @@
   },
   "private": false,
   "publishConfig": {
-    "registry": ""
+    "registry": "https://registry.npmjs.org/"
   }
 }
