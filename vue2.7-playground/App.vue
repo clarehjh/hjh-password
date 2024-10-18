@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { isVue2, isVue3, ref,provide } from "vue-demi";
-// import xsyLogin from "@xinshiyun/xsy-login";
-// import "@xinshiyun/xsy-login/dist/style.css";
+
 import {isEnableTwoFactorAuth,verifyCaptchaCode} from '../src/api/index';
 
 console.warn(`Vue env: Vue3:${isVue3} -- Vue2: ${isVue2}`);
@@ -37,17 +36,6 @@ console.log(token.value)
 
 <template>
   <div>
-    <!-- <xsy-login
-      systemId="2"
-      clearable
-      isForgetPassword
-      isVerificationCode
-      @msg="msg"
-      @loginSuccess="loginSuccess"
-      :qrCodeSize="200"
-      :defaultText="'请输入账号'"
-      baseUrl="https://ddr-court.dev.xinshiyun.com/unauth"
-    /> -->
     <hjh-password
     ref="showDialog"
     :userInfo="{

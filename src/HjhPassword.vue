@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  name: "xsy-password",
+  name: "hjh-password",
 };
 </script>
 <script setup lang="ts">
