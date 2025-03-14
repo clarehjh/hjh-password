@@ -2,6 +2,14 @@
 
 用户信息加修改密码 组件支持 vue2,vue3
 
+## 安装
+
+```
+
+pnpm install vuePassword
+
+```
+
 ## 配置属性
 
 | 字段               | 类型      | 默认值                                                                      | 描述             |
@@ -22,13 +30,12 @@
 | `setFlag`          | `e: boolean` | `void`   | 控制是否展示双因子弹窗（通过 ref 调用）                     |
 | `changeDialog`     | `e: boolean` | `void`   | 点击提交修改密码成功后调用请传入参数 false（通过 ref 调用） |
 
-
 > 代码配置示例 :
 
 ```vue
 <template>
-  <hjh-password
-    ref="hjhPassword"
+  <vue-password
+    ref="vuePassword"
     :userInfo="{
       name: '43534534',
       acctName: '111',
@@ -43,17 +50,17 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import hjhPassword from "hjh-password"";
-import "hjh-password/dist/style.css";
+import vuePassword from "vue-password"";
+import "vue-password/dist/style.css";
 import {isEnableTwoFactorAuth,verifyCaptchaCode，modifyPassword} from '../src/api/index';
 
-const hjhPassword=ref()
+const vuePassword=ref()
 const captchaId=ref('')
 const captchaKey=ref('')
 const test=()=>{
   //验证是否需要双因子短信验证
   isEnableTwoFactorAuth().then(res=>{
-    hjhPassword.value.setFlag(res.data.flag)
+    vuePassword.value.setFlag(res.data.flag)
     captchaId.value=res.data.captchaId
   })
 }
@@ -63,14 +70,14 @@ const verificationCode=(e)=>{
   verifyCaptchaCode({captchaId:  captchaId.value,captchaCode:e}).then(res=>{
     if(res.data.captchaKey){
       //成功则关闭双因子短信验证弹窗
-      hjhPassword.value.setFlag(false)
+      vuePassword.value.setFlag(false)
     }
 })
 }
 const change = (data) => {
   modifyPassword({ oldPassword: data.oldPassword; newPassword: data.newPassword; captchaKey: captchaKey.value }).then(res=>{
     if(res===200){
-hjhPassword.value.changeDialog(false)
+vuePassword.value.changeDialog(false)
     }
   })
 };

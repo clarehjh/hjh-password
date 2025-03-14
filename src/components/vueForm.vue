@@ -8,7 +8,7 @@
 import { provide, reactive } from "vue-demi";
 
 export default {
-  name: "XsyForm",
+  name: "vueForm",
   setup() {
     const errors = reactive({});
     const formData = reactive({});

@@ -7,9 +7,9 @@
       @close="closeDialog"
     >
       <template #header>
-        <span class="xsy-header-title">修改密码</span>
+        <span class="vue-header-title">修改密码</span>
       </template>
-      <XsyForm ref="formRef">
+      <vueForm ref="formRef">
         <input
           type="text"
           name="username"
@@ -17,14 +17,17 @@
           style="display: none"
         />
 
-        <XsyInput type="password" name="oldPassword" label="旧密码" />
-        <XsyInput type="password" name="newPassword" label="新密码" />
-        <XsyInput type="password" name="confirmPassword" label="确认密码" />
-      </XsyForm>
+        <vueInput type="password" name="oldPassword" label="旧密码" />
+        <vueInput type="password" name="newPassword" label="新密码" />
+        <vueInput type="password" name="confirmPassword" label="确认密码" />
+      </vueForm>
       <template #footer>
-        <XsyButton type="default" @click.native="closeDialog">取消</XsyButton>
-        <XsyButton type="primary" @click.native="submitForm" style="margin-left: 10px"
-          >提交</XsyButton
+        <vueButton type="default" @click.native="closeDialog">取消</vueButton>
+        <vueButton
+          type="primary"
+          @click.native="submitForm"
+          style="margin-left: 10px"
+          >提交</vueButton
         >
       </template>
     </SimpleDialog>
@@ -32,18 +35,18 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed ,inject} from "vue-demi";
+import { ref, computed, inject } from "vue-demi";
 import SimpleDialog from "./SimpleDialog.vue";
-import XsyForm from "./HjhForm.vue";
-import XsyInput from "./HjhInput.vue";
-import XsyButton from "./HjhButton.vue";
+import vueForm from "./vueForm.vue";
+import vueInput from "./vueInput.vue";
+import vueButton from "./vueButton.vue";
 // const props = defineProps({
 //   showDialog: {
 //     type: Boolean,
 //     default: false,
 //   },
 // });
-const dialogVisible= ref( inject("dialogVisible1"))
+const dialogVisible = ref(inject("dialogVisible1"));
 
 const emit = defineEmits(["update:showDialog", "submit-event"]);
 // const dialogVisible = computed({
@@ -56,7 +59,7 @@ const emit = defineEmits(["update:showDialog", "submit-event"]);
 // });
 
 function closeDialog() {
-  dialogVisible.value=false
+  dialogVisible.value = false;
   emit("update:showDialog", false);
 }
 
@@ -73,7 +76,7 @@ const submitForm = () => {
 </script>
 
 <style scoped lang="scss">
-.xsy-header-title {
+.vue-header-title {
   line-height: 24px;
   font-size: 18px;
   color: #303133;

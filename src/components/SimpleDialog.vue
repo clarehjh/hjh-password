@@ -3,33 +3,29 @@
     :to="appendTo"
     :disabled="appendTo !== 'body' ? false : !appendToBody"
   > -->
-    <transition name="xsy-dialog-fade">
+  <transition name="vue-dialog-fade">
+    <div v-if="visible" class="vue-dialog-overlay" @click="handleOverlayClick">
       <div
-       v-if="visible"
-        class="xsy-dialog-overlay"
-        @click="handleOverlayClick"
+        class="vue-dialog-content"
+        role="vue-dialog"
+        aria-modal="true"
+        :aria-label="title || undefined"
       >
-        <div
-          class="xsy-dialog-content"
-          role="xsy-dialog"
-          aria-modal="true"
-          :aria-label="title || undefined"
-        >
-          <div class="xsy-dialog-header">
-            <slot name="header">{{ title }}</slot>
-            <div class="xsy-text_btn" @click="handleClose">
-              <MaterialSymbolsLightClose />
-            </div>
-          </div>
-          <div class="xsy-dialog-body">
-            <slot></slot>
-          </div>
-          <div v-if="$slots.footer" class="xsy-dialog-footer">
-            <slot name="footer"></slot>
+        <div class="vue-dialog-header">
+          <slot name="header">{{ title }}</slot>
+          <div class="vue-text_btn" @click="handleClose">
+            <MaterialSymbolsLightClose />
           </div>
         </div>
+        <div class="vue-dialog-body">
+          <slot></slot>
+        </div>
+        <div v-if="$slots.footer" class="vue-dialog-footer">
+          <slot name="footer"></slot>
+        </div>
       </div>
-    </transition>
+    </div>
+  </transition>
   <!-- </teleport> -->
 </template>
 
@@ -68,7 +64,7 @@ const handleClose = () => {
 </script>
 
 <style scoped>
-.xsy-dialog-overlay {
+.vue-dialog-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -80,7 +76,7 @@ const handleClose = () => {
   align-items: center;
 }
 
-.xsy-dialog-content {
+.vue-dialog-content {
   background: white;
   padding: 20px;
   border-radius: 5px;
@@ -88,24 +84,24 @@ const handleClose = () => {
   width: 100%;
 }
 
-.xsy-dialog-header {
+.vue-dialog-header {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 0 20px 0;
 }
-.xsy-text_btn {
+.vue-text_btn {
   &:hover {
     color: #66b1ff;
     cursor: pointer;
   }
 }
-.xsy-dialog-body {
+.vue-dialog-body {
   margin-bottom: 20px;
 }
 
-.xsy-dialog-footer {
+.vue-dialog-footer {
   text-align: right;
 }
 </style>

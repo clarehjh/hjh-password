@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  name: "hjh-password",
+  name: "vue-password",
 };
 </script>
 <script setup lang="ts">

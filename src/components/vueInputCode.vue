@@ -1,8 +1,8 @@
 <template>
-  <div :class="['xsy-input', isFocus ? 'is-focus' : '']">
+  <div :class="['vue-input', isFocus ? 'is-focus' : '']">
     <slot></slot>
     <input
-      ref="xsyInput"
+      ref="vueInput"
       :maxlength="maxlength"
       :type="
         type === 'password' ? (passwordVisible ? 'text' : 'password') : type
@@ -13,14 +13,11 @@
       @keydown="onKeydown"
       v-model="inputValue"
     />
-   
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, nextTick, computed, inject, onMounted, isVue2 } from "vue-demi";
-
-
 
 interface Props {
   type?: string;
@@ -41,7 +38,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(["update:value", "input"]);
 
-const xsyInput = ref();
+const vueInput = ref();
 // 获取焦点
 const isFocus = ref(false);
 const inputFocus = () => {
@@ -55,7 +52,7 @@ const passwordVisible = ref(false);
 const togglePasswordVisible = async () => {
   passwordVisible.value = !passwordVisible.value;
   await nextTick();
-  xsyInput.value.focus();
+  vueInput.value.focus();
 };
 
 let keyupNum: any = null;
@@ -74,7 +71,7 @@ const onInput = (val = inputValue.value) => {
   ) {
     emitValue =
       +emitValue > props.max || +emitValue < props.min ? keyupNum : emitValue;
-    xsyInput.value.value = emitValue;
+    vueInput.value.value = emitValue;
   }
   if (isVue2) {
     emit("input", emitValue);
@@ -97,10 +94,10 @@ const clearInput = () => {
 
 onMounted(() => {
   if (props.autoFocus) {
-    xsyInput.value.focus();
+    vueInput.value.focus();
   }
 });
-defineExpose({ xsyInput });
+defineExpose({ vueInput });
 </script>
 <style scoped>
 input[type="password"]::-ms-reveal {
@@ -119,7 +116,7 @@ input::placeholder {
   color: #a8abb2;
   font-size: 14px;
 }
-.xsy-input {
+.vue-input {
   min-width: 0;
   display: flex;
   align-items: center;
@@ -132,10 +129,10 @@ input::placeholder {
   background-color: #fff;
   position: relative;
 }
-.xsy-input + .xsy-input {
+.vue-input + .vue-input {
   margin-top: 10px;
 }
-.xsy-input input {
+.vue-input input {
   min-width: 0;
   max-width: 100%;
   height: 100%;
@@ -148,7 +145,7 @@ input::placeholder {
   border-radius: 4px;
   background-color: transparent;
 }
-.xsy-input .inp-icon {
+.vue-input .inp-icon {
   cursor: pointer;
   position: absolute;
   right: 11px;
@@ -157,7 +154,7 @@ input::placeholder {
 .icon + .icon {
   margin-left: 5px;
 }
-.xsy-input.is-focus {
+.vue-input.is-focus {
   border-color: #409eff;
 }
 </style>

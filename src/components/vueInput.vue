@@ -1,14 +1,14 @@
 <template>
-  <div class="xsy-formInput">
-    <label :for="name" class="xsy-form_label">
+  <div class="vue-formInput">
+    <label :for="name" class="vue-form_label">
       <span style="color: #f56c6c; margin-right: 4px">*</span>
       {{ label }}
     </label>
 
-    <div class="xsy-form_content">
-      <div class="xsy-outInput">
+    <div class="vue-form_content">
+      <div class="vue-outInput">
         <input
-          class="xsy-innerput"
+          class="vue-innerput"
           :class="{ 'is-error': errors[name] }"
           autocomplete="current-password"
           :type="inputType"
@@ -22,7 +22,7 @@
         />
         <span
           v-if="isFocused || inputValue"
-          class="xsy-icon"
+          class="vue-icon"
           @click="togglePasswordVisibility"
         >
           <ClarityEyeShowLine />
@@ -87,10 +87,10 @@ const inputType = computed(() =>
   left: 0;
 }
 
-.xsy-formInput {
+.vue-formInput {
   margin-bottom: 30px;
   display: flex;
-  .xsy-form_label {
+  .vue-form_label {
     text-align: right;
     vertical-align: middle;
     float: left;
@@ -101,18 +101,18 @@ const inputType = computed(() =>
     box-sizing: border-box;
     width: 120px;
   }
-  .xsy-form_content {
+  .vue-form_content {
     line-height: 40px;
     position: relative;
     font-size: 14px;
     width: 100%;
 
-    .xsy-outInput {
+    .vue-outInput {
       display: inline-block;
       width: 100%;
       position: relative;
       font-size: 14px;
-      .xsy-innerput {
+      .vue-innerput {
         -webkit-appearance: none;
         background-color: #fff;
         background-image: none;
@@ -133,7 +133,7 @@ const inputType = computed(() =>
       }
     }
 
-    .xsy-icon {
+    .vue-icon {
       position: absolute;
       top: 0;
       right: 5px;
